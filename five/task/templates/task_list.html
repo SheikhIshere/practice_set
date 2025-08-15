@@ -12,10 +12,10 @@
             <!-- Task Info -->
             <div>
                 <a href="{% url 'task:task_detail' task.id %}" class="text-xl font-semibold text-gray-800">
-                    {{ task.title }}
+                    {{ task.title|truncatechars:20 }}
                     <span class="text-sm text-gray-500">({{ task.category }})</span>
                 </a>
-                <p class="text-gray-600 mt-1">{{ task.description }}</p>
+                <p class="text-gray-600 mt-1">{{ task.description|truncatechars:30 }}</p>
 
                 <!-- Owner -->
                 <p class="text-sm text-gray-500 mt-2">

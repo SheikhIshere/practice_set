@@ -19,7 +19,7 @@ Category = (
 class TaskModel(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
-    description = models.TextField(blank=True, default='This task does not have a description yet.')
+    description = models.TextField(blank=True, default='This task does not have a description yet.', max_length=1000)
     category = models.CharField(max_length=20, choices=Category, default='Others')
     likes = models.ManyToManyField(User, related_name='likes', blank=True)
     dead_line = models.DateTimeField(null=True, blank=True)
