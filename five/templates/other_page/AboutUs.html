@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}About Us – Task Manager{% endblock %}
+{% block content %}
+<div class="container my-10" style = "display: flex; flex-direction: column; align-items: center; min-height: 50vh;">
+    <h1 class="text-4xl font-bold mb-6"><i class="fa-solid fa-building text-blue-500 mr-2"></i> About Us</h1>
+    <p class="text-gray-600 mb-8">We are a passionate team dedicated to building the best productivity tools.</p>
+    <div class="grid md:grid-cols-3 gap-6">
+        {% for m in "123" %}
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition text-center">
+            <img src="https://via.placeholder.com/150" class="mx-auto rounded-full mb-4" alt="Member" loading="lazy">
+            <h2 class="text-lg font-semibold">Team Member {{ m }}</h2>
+            <p class="text-gray-500">Position</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

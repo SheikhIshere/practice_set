@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Delete Task{% endblock %}
 {% block content %}
-<div class="row justify-content-center">
+<div class="row justify-content-center" style = "min-height: 60vh;">
     <div class="col-md-6">
         <h2>Delete Task</h2>
-        <p>Are you sure you want to delete "<strong>{{ object.title }}</strong>"?</p>
-        <form method="post">
+        <p>Are you sure you want to delete "<strong>{{ task.title }}</strong>"?</p>
+        <form method="post" class="card card-body shadow-sm">
             {% csrf_token %}
             <button type="submit" class="btn btn-danger w-100">Yes, delete</button>
-            <a href="{% url 'task:homepage' %}" class="btn btn-secondary w-100 mt-2">Cancel</a>
+            <a href="{% url 'task:task_list' %}" class="btn btn-secondary mt-3 w-100">Cancel</a>
         </form>
     </div>
 </div>

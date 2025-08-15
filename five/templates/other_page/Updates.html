@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Updates – Task Manager{% endblock %}
+{% block content %}
+<div class="container my-10" style = "display: flex; flex-direction: column; align-items: center; min-height: 50vh;">
+    <h1 class="text-4xl font-bold mb-6"><i class="fa-solid fa-bullhorn text-red-500 mr-2"></i> Updates</h1>
+    <div class="space-y-6">
+        {% for i in "1234" %}
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+            <h2 class="text-2xl font-semibold mb-1">Update Title {{ i }}</h2>
+            <p class="text-gray-500 text-sm mb-3">August {{ 1|add:i }}, 2025</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fermentum eros id sem aliquet.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

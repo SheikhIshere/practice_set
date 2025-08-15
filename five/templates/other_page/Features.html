@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Features – Task Manager{% endblock %}
+{% block content %}
+<div class="container my-10" style = "display: flex; flex-direction: column; align-items: center; min-height: 50vh;">
+    <h1 class="text-4xl font-bold mb-6"><i class="fa-solid fa-star text-yellow-500 mr-2"></i> Features</h1>
+    <p class="text-gray-600 mb-8">Our platform offers a wide range of tools to enhance your productivity.</p>
+    <div class="grid md:grid-cols-3 gap-6">
+        {% for feature in features %}
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+            <i class="fa-solid {{ feature.icon }} text-indigo-500 text-3xl mb-4"></i>
+            <h2 class="text-xl font-semibold mb-2">{{ feature.title }}</h2>
+            <p class="text-gray-600">{{ feature.description }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

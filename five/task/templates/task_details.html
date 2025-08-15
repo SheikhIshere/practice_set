@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto px-4 py-8" style="min-height: 60vh;">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white rounded-xl shadow-lg p-6 mb-6">
+        <h1 class="text-4xl font-extrabold mb-2 flex items-center">
+            <i class="fa-solid fa-circle-info mr-2"></i> {{ task.title }}
+        </h1>
+        <p class="text-sm opacity-90">
+            <i class="fa-solid fa-user mr-1"></i>
+            By <a href="{% url 'accounts:profile' username=task.user.username %}" 
+                  class="text-gray-800 hover:text-gray-500 ">{{ task.user.username }}</a>
+        </p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="bg-white shadow-lg rounded-xl border border-gray-200 p-6">
+        <!-- Description -->
+        <p class="mb-6 text-gray-700 leading-relaxed">
+            {{ task.description }}
+        </p>
+
+        <!-- Category & Status -->
+        <div class="flex flex-wrap gap-3 mb-6">
+            <span class="inline-flex items-center px-3 py-1 text-sm font-medium bg-indigo-100 text-indigo-700 rounded-full">
+                <i class="fa-solid fa-tags mr-1"></i> {{ task.category }}
+            </span>
+
+            {% if task.is_completed %}
+                <span class="inline-flex items-center px-3 py-1 text-sm font-medium bg-green-100 text-green-700 rounded-full">
+                    <i class="fa-solid fa-circle-check mr-1"></i> Completed
+                </span>
+            {% else %}
+                <span class="inline-flex items-center px-3 py-1 text-sm font-medium bg-yellow-100 text-yellow-700 rounded-full">
+                    <i class="fa-solid fa-hourglass-half mr-1"></i> In Progress
+                </span>
+            {% endif %}
+        </div>
+
+        <!-- Deadline -->
+        {% if task.dead_line %}
+            <p class="mb-4 {% if task.dead_line < now %}text-red-600{% else %}text-blue-600{% endif %} font-medium">
+                <i class="fa-solid fa-calendar-day mr-1"></i>
+                Deadline: {{ task.dead_line|date:"M d, Y H:i" }}
+            </p>
+        {% endif %}
+
+        <!-- Likes -->
+        <p class="text-sm text-gray-500 mb-2">
+            <i class="fa-solid fa-thumbs-up mr-1"></i> {{ task.likes_count }} like{{ task.likes_count|pluralize }}
+        </p>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-8 flex flex-wrap gap-3">
+        {% if user.is_authenticated and task.user != user %}
+            <a href="{% url 'task:task_liked' task.id %}" 
+               class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition flex items-center text-sm">
+                <i class="fa-solid fa-thumbs-up mr-2"></i> Like Task
+            </a>
+        {% endif %}
+
+        {% if task.user == user %}
+            <a href="{% url 'task:task_edit' task.id %}" 
+               class="px-4 py-2 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600 transition flex items-center text-sm">
+                <i class="fa-solid fa-pen mr-2"></i> Edit
+            </a>
+            <a href="{% url 'task:task_delete' task.id %}" 
+               class="px-4 py-2 bg-red-600 text-white rounded-lg shadow hover:bg-red-700 transition flex items-center text-sm">
+                <i class="fa-solid fa-trash mr-2"></i> Delete
+            </a>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-10 text-xs text-gray-400">
+        <p><i class="fa-solid fa-clock mr-1"></i> Created at {{ task.created_at|date:"M d, Y H:i" }}</p>
+        <p><i class="fa-solid fa-rotate mr-1"></i> Last updated {{ task.updated_at|date:"M d, Y H:i" }}</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Tutorials – Task Manager{% endblock %}
+{% block content %}
+<div class="container my-10" style = "display: flex; flex-direction: column; align-items: center; min-height: 50vh;">
+    <h1 class="text-4xl font-bold mb-6"><i class="fa-solid fa-graduation-cap text-yellow-500 mr-2"></i> Tutorials</h1>
+    <div class="grid md:grid-cols-2 gap-6">
+        {% for t in "1234" %}
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+            <h2 class="text-xl font-semibold mb-2">Tutorial {{ t }}</h2>
+            <p>Learn step-by-step how to use our platform effectively with video and text guides.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

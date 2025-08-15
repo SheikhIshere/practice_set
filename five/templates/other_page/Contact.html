@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Contact – Task Manager{% endblock %}
+{% block content %}
+<div class="container my-10" style = "display: flex; flex-direction: column; align-items: center; min-height: 50vh;">
+    <h1 class="text-4xl font-bold mb-6"><i class="fa-solid fa-envelope text-red-500 mr-2"></i> Contact Us</h1>
+    <form class="bg-white p-6 rounded-lg shadow space-y-4">
+        <input type="text" placeholder="Name" class="w-full border rounded px-4 py-2">
+        <input type="email" placeholder="Email" class="w-full border rounded px-4 py-2">
+        <textarea placeholder="Message" class="w-full border rounded px-4 py-2"></textarea>
+        <button class="bg-red-500 text-white px-6 py-2 rounded hover:bg-red-600">Send</button>
+    </form>
+</div>
+{% endblock %}

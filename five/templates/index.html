@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+
+    <!-- Header -->
+    <div class="text-center mb-5">
+        <h1 class="display-4">Professional Task Manager</h1>
+        <p class="lead">A modern solution for team collaboration and productivity with intuitive task management, progress tracking, and deadline management.</p>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row text-center g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100 p-4">
+                <i class="fas fa-list-check fa-3x mb-3 text-primary"></i>
+                <h3 class="h5">Task Management</h3>
+                <p>Create, assign, and track tasks with deadlines, priorities, and progress indicators. Organize tasks into projects and categories.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 p-4">
+                <i class="fas fa-users fa-3x mb-3 text-success"></i>
+                <h3 class="h5">Team Collaboration</h3>
+                <p>Invite team members, assign roles, and collaborate in real-time. Share files, comments, and updates on tasks and projects.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 p-4">
+                <i class="fas fa-chart-pie fa-3x mb-3 text-warning"></i>
+                <h3 class="h5">Progress Tracking</h3>
+                <p>Visualize project progress with interactive dashboards, charts, and reports. Monitor team performance and identify bottlenecks.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Authentication State Section -->
+    {% if user.is_authenticated %}
+    <div class="text-center mb-5">
+        <h2>User Authentication State ✅</h2>
+        <div class="d-flex justify-content-center gap-2 mb-3">
+            <a href="{% url 'accounts:profile' username=request.user.username %}" class="btn btn-outline-primary active">Profile</a>
+            <a href="{% url 'task:task_list' %}" class="btn btn-outline-secondary">Task List</a>
+        </div>
+        <p>The navigation bar dynamically changes based on the user's authentication state. When authenticated, users see their profile, task creation options, and logout functionality.</p>
+        <p>When not authenticated, the navbar displays login and signup options instead.</p>        
+    </div>
+    {% else %}
+    <div class="text-center mb-5">
+        <h2>User Authentication State ❌</h2>        
+        <div class="d-flex justify-content-center gap-2 mb-3">
+            <a href="{% url 'accounts:login' %}" class="btn btn-outline-primary">Login</a>
+            <a href="{% url 'accounts:signup' %}" class="btn btn-outline-secondary">Sign Up</a>
+        </div>
+        <p>The navigation bar dynamically changes based on the user's authentication state. When authenticated, users see their profile, task creation options, and logout functionality.</p>
+        <p>When not authenticated, the navbar displays login and signup options instead.</p>        
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

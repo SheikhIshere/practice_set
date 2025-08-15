@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Documentation – Task Manager{% endblock %}
+{% block content %}
+<div class="container my-10" style = "display: flex; flex-direction: column; align-items: center; min-height: 50vh;">
+    <h1 class="text-4xl font-bold mb-6"><i class="fa-solid fa-book text-blue-500 mr-2"></i> Documentation</h1>
+    <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+            <h2 class="text-xl font-semibold mb-2">Getting Started</h2>
+            <p>Step-by-step instructions for setting up your account and first project.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+            <h2 class="text-xl font-semibold mb-2">API Reference</h2>
+            <p>Explore our REST API endpoints and integration guides.</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
+            <h2 class="text-xl font-semibold mb-2">Advanced Features</h2>
+            <p>Learn about automations, custom fields, and advanced analytics.</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

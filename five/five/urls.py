@@ -17,10 +17,25 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import index
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
-    # path('task/', include('task.urls')),
+    path('task/', include('task.urls')),
     path('', index, name='homepage'),
+
+    # other pages
+    path('features/', TemplateView.as_view(template_name='other_page/Features.html'), name='features'),
+    path('pricing/', TemplateView.as_view(template_name='other_page/Pricing.html'), name='pricing'),
+    path('integrations/', TemplateView.as_view(template_name='other_page/Integrations.html'), name='integrations'),
+    path('updates/', TemplateView.as_view(template_name='other_page/Updates.html'), name='updates'),
+    path('documentation/', TemplateView.as_view(template_name='other_page/Documentation.html'), name='documentation'),
+    path('tutorials/', TemplateView.as_view(template_name='other_page/Tutorials.html'), name='tutorials'),
+    path('blog/', TemplateView.as_view(template_name='other_page/Blog.html'), name='blog'),
+    path('support/', TemplateView.as_view(template_name='other_page/Support.html'), name='support'),
+    path('about-us/', TemplateView.as_view(template_name='other_page/AboutUs.html'), name='about-us'),
+    path('careers/', TemplateView.as_view(template_name='other_page/Careers.html'), name='careers'),
+    path('contact/', TemplateView.as_view(template_name='other_page/Contact.html'), name='contact'),
+    path('partners/', TemplateView.as_view(template_name='other_page/Partners.html'), name='partners'),
 ]
