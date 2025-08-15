@@ -1,0 +1,50 @@
+USER 1
+username: imran_sheikh
+password: fucking_great_website
+email: xyz@abc.com
+
+
+USER 2
+username: ninja
+password: fucking_great_ninja
+email: xyz@abc.com
+
+USER 3
+username: milk
+password: way_to_land_123
+email: zyx@abc.com
+
+USER 4
+username: suck
+password: way_to_suck_698
+email: zsx@abc.com
+
+USER 5
+username: blaze
+password: firestorm_4521
+email: blaze@example.com
+
+USER 6
+username: neonfox
+password: bright_light_983
+email: neonfox@mail.com
+
+USER 7
+username: shadowhawk
+password: silent_strike_741
+email: shadowhawk@domain.com
+
+USER 8
+username: cyberwolf
+password: tech_howl_369
+email: cyberwolf@webmail.com
+
+USER 9
+username: frostbyte
+password: icy_cold_246
+email: frostbyte@mailbox.com
+
+USER 10
+username: nightowl
+password: dark_sky_907
+email: nightowl@postmail.com

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-screen bg-gray-50">
+    <div class="bg-white shadow-md rounded-lg p-6 w-full max-w-lg text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-4">Welcome, {{ user_obj.username }}!</h2>
+        <p class="text-gray-600">Email: {{ user_obj.email }}</p>
+        <p class="text-gray-600">Joined on: {{ user_obj.date_joined|date:"F j, Y" }}</p>
+        
+        <form method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="mt-6 inline-block bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">Logout</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
