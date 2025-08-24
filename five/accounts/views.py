@@ -1,3 +1,4 @@
+from random import randint
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import RedirectView
 from django.contrib.auth.models import User
@@ -10,12 +11,14 @@ from django.views.generic import CreateView
 from django.contrib.auth.views import LoginView
 from .forms import SignUpForm
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import RedirectView
-from django.urls import reverse_lazy
-from .models import ProfileModel
-from .forms import ProfileUpdateForm
+from django.views.generic import RedirectView, FormView, TemplateView
+from django.urls import reverse_lazy, reverse
+from django.contrib import messages
+from django.utils import timezone
+from .models import ProfileModel, OTP
+from .forms import ProfileUpdateForm, OTPVerificationForm
 # Create your views here.
 
 
@@ -91,3 +94,83 @@ class ProfileRedirectView(LoginRequiredMixin, RedirectView):
         """Return the URL to redirect to."""
         kwargs['username'] = self.request.user.username
         return super().get_redirect_url(*args, **kwargs)
+
+
+
+
+# otp verification
+
+from datetime import datetime, timedelta
+from random import randint
+from django.core.cache import cache
+
+class OTPMixin:
+    OTP_EXPIRY_MINUTES = 5
+    
+    def generate_otp(self, user):
+        """Generate and store a new OTP for the user."""
+        otp = str(randint(100000, 999999))
+        expires_at = timezone.now() + timezone.timedelta(minutes=self.OTP_EXPIRY_MINUTES)
+        
+        # Create or update OTP for the user
+        otp_obj, created = OTP.objects.update_or_create(
+            user=user,
+            defaults={
+                'otp': otp,
+                'expires_at': expires_at,
+                'is_used': False
+            }
+        )
+        return otp
+    
+    def send_otp(self, user, otp):
+        """Send OTP to the user (placeholder - implement actual sending logic here)."""
+        # In a real app, implement actual email/SMS sending here
+        print(f"Sending OTP to {user.email}: {otp}")
+        return True
+    
+    def verify_otp(self, user, otp):
+        """Verify if the provided OTP is valid for the user."""
+        try:
+            otp_obj = OTP.objects.filter(
+                user=user,
+                otp=otp,
+                is_used=False,
+                expires_at__gt=timezone.now()
+            ).latest('created_at')
+            
+            otp_obj.mark_used()
+            return True, "OTP verified successfully"
+            
+        except OTP.DoesNotExist:
+            return False, "Invalid or expired OTP"
+
+
+class OTPVerificationView(LoginRequiredMixin, FormView):
+    template_name = 'registration/otp_verify.html'
+    form_class = OTPVerificationForm
+    success_url = reverse_lazy('task:task_list')  # Update with your success URL
+    
+    def form_valid(self, form):
+        otp = form.cleaned_data['otp']
+        otp_mixin = OTPMixin()
+        success, message = otp_mixin.verify_otp(self.request.user, otp)
+        
+        if success:
+            messages.success(self.request, message)
+            # Mark user as verified or perform other actions
+            return super().form_valid(form)
+        else:
+            messages.error(self.request, message)
+            return self.form_invalid(form)
+
+
+class RequestOTPView(LoginRequiredMixin, TemplateView):
+    template_name = 'registration/request_otp.html'
+    
+    def get(self, request, *args, **kwargs):
+        otp_mixin = OTPMixin()
+        otp = otp_mixin.generate_otp(request.user)
+        otp_mixin.send_otp(request.user, otp)
+        messages.info(request, 'A new OTP has been sent to your registered email.')
+        return redirect('accounts:verify_otp')

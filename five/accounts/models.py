@@ -3,9 +3,21 @@ from django.views.generic import CreateView
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
 
-
-
+class OTP(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    otp = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    is_used = models.BooleanField(default=False)
+    
+    def is_expired(self):
+        return timezone.now() > self.expires_at
+        
+    def mark_used(self):
+        self.is_used = True
+        self.save()
 
 GENDER_CHOICES = (
     ('M', 'Male'),

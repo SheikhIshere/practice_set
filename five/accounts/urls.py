@@ -6,6 +6,8 @@ from .views import (
     ProfileView,
     ProfileEditView,
     ProfileRedirectView,
+    OTPVerificationView,
+    RequestOTPView,
 )
 
 app_name = 'accounts'
@@ -17,4 +19,8 @@ urlpatterns = [
     path('profile/<slug:username>/', ProfileView.as_view(), name='profile'),
     path('profile_edit/', ProfileEditView.as_view(), name='profile_edit'),
     path('profile_redirect/', ProfileRedirectView.as_view(), name='profile_redirect'),
+    
+    # OTP Verification URLs
+    path('verify-otp/', OTPVerificationView.as_view(), name='verify_otp'),
+    path('request-otp/', RequestOTPView.as_view(), name='request_otp'),
 ]

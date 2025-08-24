@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+<div class="flex items-center justify-center h-screen">
+    <div class="bg-white p-6 rounded shadow">
+        <h2 class="text-2xl text-gray-800 text-center mb-4">Profile</h2>        
+        <h3 class="text-lg text-gray-800 text-center mb-2">{{ user.username }}</h3>
+        <p class="text-gray-600 text-center">Email: {{ user.email }}</p>
+        <p class="text-gray-600 text-center">Mobile: {{ user.profile.mobile }}</p>
+    </div>
+</div>
+{% endblock content %}
