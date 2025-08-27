@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Products{% endblock title %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50 py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl font-extrabold text-gray-900 text-center mb-12">Our Products</h1>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white shadow rounded-lg p-6 hover:shadow-lg transition">
+                <i class="fas fa-mobile-alt text-indigo-600 text-5xl mb-4"></i>
+                <h3 class="text-2xl font-semibold mb-2">Mobile App</h3>
+                <p class="text-gray-600 mb-4">A sleek, modern mobile application built with cutting-edge tech.</p>
+                <button class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+                    Learn More
+                </button>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6 hover:shadow-lg transition">
+                <i class="fas fa-globe text-indigo-600 text-5xl mb-4"></i>
+                <h3 class="text-2xl font-semibold mb-2">Web Platform</h3>
+                <p class="text-gray-600 mb-4">A responsive web platform designed for performance and usability.</p>
+                <button class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+                    Learn More
+                </button>
+            </div>
+            <div class="bg-white shadow rounded-lg p-6 hover:shadow-lg transition">
+                <i class="fas fa-cloud text-indigo-600 text-5xl mb-4"></i>
+                <h3 class="text-2xl font-semibold mb-2">Cloud Service</h3>
+                <p class="text-gray-600 mb-4">Reliable and scalable cloud solutions for your business needs.</p>
+                <button class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">
+                    Learn More
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

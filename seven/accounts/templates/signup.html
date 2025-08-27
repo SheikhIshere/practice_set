@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}SignUp{% endblock title %}
+
+{% block content %}
+<div class="container mx-auto h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded shadow">
+        <h2 class="text-2xl text-gray-800 text-center mb-4">SignUp</h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" id="username" name="username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input type="email" id="email" name="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="password1" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input type="password" id="password1" name="password1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label for="password2" class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+                <input type="password" id="password2" name="password2" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">SignUp</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css');
+</style>
+
+{% endblock content %}

@@ -32,7 +32,7 @@ class UserLoginView(LoginView):
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('accounts:login')
 
-class ProfileView(LoginRequiredMixin, DetailView):
+class ProfileView(DetailView):
     template_name = 'profile.html'
     model = User
     slug_field = 'username'
@@ -52,21 +52,15 @@ class ProfileView(LoginRequiredMixin, DetailView):
         try:
             context['profile'] = user.profilemodel
         except ProfileModel.DoesNotExist:
-            # Create profile if it doesn't exist
             context['profile'] = ProfileModel.objects.create(
                 user=user,
                 first_name=user.first_name,
                 last_name=user.last_name,
                 email=user.email,
-                mobile=''  # Set default or required fields
+                mobile=''
             )
         return context
     
-    def dispatch(self, request, *args, **kwargs):
-        # Only allow users to view their own profile
-        if not request.user.is_authenticated or request.user.username != kwargs.get('username'):
-            return redirect('accounts:login')
-        return super().dispatch(request, *args, **kwargs)
     
     
-# ZebaFauzia372009_
+    

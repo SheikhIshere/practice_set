@@ -1,0 +1,49 @@
+USER 1
+username: user_1
+password: fucking_great_website1
+email: xyz1@abc.com
+
+USER 2
+username: user_2
+password: fucking_great_website2
+email: xyz2@abc.com
+
+USER 3
+username: user_3
+password: fucking_great_website3
+email: xyz3@abc.com
+
+USER 4
+username: user_4
+password: fucking_great_website4
+email: xyz4@abc.com
+
+USER 5
+username: user_5
+password: fucking_great_website5
+email: xyz5@abc.com
+
+USER 6
+username: user_6
+password: fucking_great_website6
+email: xyz6@abc.com
+
+USER 7
+username: user_7
+password: fucking_great_website7
+email: xyz7@abc.com
+
+USER 8
+username: user_8
+password: fucking_great_website8
+email: xyz8@abc.com
+
+USER 9
+username: user_9
+password: fucking_great_website9
+email: xyz9@abc.com
+
+USER 10
+username: user_10
+password: fucking_great_website10
+email: xyz10@abc.com

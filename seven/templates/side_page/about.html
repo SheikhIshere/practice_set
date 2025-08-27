@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}About Us{% endblock title %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-6">About Us</h1>
+        <p class="text-lg text-gray-700 leading-relaxed mb-10">
+            Welcome to <span class="font-semibold">BasicApp</span>. We are passionate about building 
+            modern web applications using Django and Tailwind CSS. 
+            Our mission is to provide simple, secure, and powerful solutions 
+            for developers and businesses alike.
+        </p>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white rounded-lg shadow p-6">
+                <i class="fas fa-bullseye text-indigo-600 text-4xl mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Our Mission</h3>
+                <p class="text-gray-600">To deliver fast, user-friendly, and secure digital solutions.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <i class="fas fa-lightbulb text-indigo-600 text-4xl mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Our Vision</h3>
+                <p class="text-gray-600">A future where technology empowers everyone equally.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <i class="fas fa-heart text-indigo-600 text-4xl mb-4"></i>
+                <h3 class="text-xl font-semibold mb-2">Our Values</h3>
+                <p class="text-gray-600">Integrity, simplicity, and innovation in everything we do.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
