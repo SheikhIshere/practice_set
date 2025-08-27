@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+
+    <!-- links/cdn -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+
+    <!-- here will be nav bar -->
+    <nav class="flex items-center justify-between bg-gray-800 text-white py-4">
+        <div class="flex items-center">
+            <a href="/" class="text-xl font-bold mr-4">BasicApp</a>
+            <ul class="flex ml-4">
+                <li><a href="{% url 'homepage' %}" class="text-white hover:text-gray-300 mr-4">Home</a></li>
+                <li><a href="{% url 'product' %}" class="text-white hover:text-gray-300 mr-4">Products</a></li>
+                <li><a href="{% url 'about' %}" class="text-white hover:text-gray-300 mr-4">About</a></li>
+                <li><a href="{% url 'contact' %}" class="text-white hover:text-gray-300 mr-4">Contact</a></li>
+            </ul>
+        </div>
+        <div class="flex">
+            {% if user.is_authenticated %}
+                <div class="flex items-center">                    
+                    <a href="{% url 'accounts:profile' username=user.username %}" class="text-white hover:text-gray-300 mr-4">{{ user.username }}</a>
+                    <form action="{% url 'accounts:logout' %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="text-white hover:text-gray-300">Logout</button>
+                    </form>
+                </div>
+            {% else %}
+                <a href="{% url 'accounts:login' %}" class="text-white hover:text-gray-300 mr-4">Login</a>
+                <a href="{% url 'accounts:signup' %}" class="text-white hover:text-gray-300">Signup</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <main style="min-height: 50vh">
+        {% block content %}
+        {% endblock content %}
+    </main>
+
+
+    <!-- here will be footer -->
+    <footer class="bottom-0 w-full">
+        <div class="bg-gray-800 text-white py-4">
+            <div class="container mx-auto text-center">
+                &copy; 2025 BasicApp. All rights reserved.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
