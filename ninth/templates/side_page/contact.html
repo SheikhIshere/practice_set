@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Contact Us{% endblock title %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 py-20 px-6">
+    <div class="max-w-6xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden grid md:grid-cols-2">
+        
+        <!-- Contact Form -->
+        <div class="p-10">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-6">Get in Touch</h1>
+            <p class="text-gray-600 mb-8">
+                Have questions, suggestions, or just want to say hi? Fill out the form and we’ll get back to you as soon as possible.
+            </p>
+            <form action="#" method="post" class="space-y-6">
+                {% csrf_token %}
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" name="name" required 
+                        class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" name="email" required 
+                        class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea name="message" rows="5" required 
+                        class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 shadow-sm"></textarea>
+                </div>
+                <a href="#"  
+                    class=" block w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition transform hover:-translate-y-0.5">
+                    <i class="fas fa-paper-plane mr-2"></i> Send Message
+                </a>
+            </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="bg-gradient-to-br from-indigo-600 to-blue-700 text-white p-10 flex flex-col justify-center">
+            <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+            <ul class="space-y-5 text-gray-100">
+                <li class="flex items-center">
+                    <i class="fas fa-map-marker-alt w-6"></i>
+                    <span class="ml-3">123 Tech Street, Innovation City, USA</span>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-phone w-6"></i>
+                    <span class="ml-3">+1 (555) 123-4567</span>
+                </li>
+                <li class="flex items-center">
+                    <i class="fas fa-envelope w-6"></i>
+                    <span class="ml-3">support@basicapp.com</span>
+                </li>
+            </ul>
+            <div class="mt-8">
+                <h3 class="text-lg font-semibold mb-3">Follow Us</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-gray-300"><i class="fab fa-facebook text-2xl"></i></a>
+                    <a href="#" class="hover:text-gray-300"><i class="fab fa-twitter text-2xl"></i></a>
+                    <a href="#" class="hover:text-gray-300"><i class="fab fa-linkedin text-2xl"></i></a>
+                    <a href="#" class="hover:text-gray-300"><i class="fab fa-github text-2xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional Map Section -->
+    <div class="max-w-6xl mx-auto mt-12 rounded-xl overflow-hidden shadow-lg">
+        <div class="relative pb-[56.25%] h-0"> <!-- 16:9 aspect ratio -->
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d17584.112032743218!2d90.40580997867491!3d23.80165462212199!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka%2C%20Bangladesh!5e1!3m2!1sen!2sus!4v1756462920057!5m2!1sen!2sus"
+            class="absolute top-0 left-0 w-full h-full border-0"
+            allowfullscreen
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+      
+{% endblock content %}

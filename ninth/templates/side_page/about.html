@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}About Us{% endblock title %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="relative bg-gradient-to-r from-indigo-600 to-blue-500 text-white py-24 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-5xl font-extrabold mb-6">About Us</h1>
+        <p class="text-lg md:text-xl text-gray-200 leading-relaxed">
+            Welcome to <span class="font-semibold">BasicApp</span> – where technology meets simplicity.  
+            We build modern, secure, and user-friendly web applications that empower businesses and individuals.
+        </p>
+    </div>
+</div>
+
+<!-- Mission / Vision / Values -->
+<div class="bg-gradient-to-br from-indigo-50 to-blue-100 py-20 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-14">What Drives Us</h2>
+        <div class="grid md:grid-cols-3 gap-10">
+            <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition transform hover:-translate-y-1">
+                <i class="fas fa-bullseye text-indigo-600 text-5xl mb-6"></i>
+                <h3 class="text-xl font-semibold mb-3">Our Mission</h3>
+                <p class="text-gray-600">To deliver fast, user-friendly, and secure digital solutions that make life easier.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition transform hover:-translate-y-1">
+                <i class="fas fa-lightbulb text-yellow-500 text-5xl mb-6"></i>
+                <h3 class="text-xl font-semibold mb-3">Our Vision</h3>
+                <p class="text-gray-600">A future where technology empowers everyone to achieve more with less complexity.</p>
+            </div>
+            <div class="bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl transition transform hover:-translate-y-1">
+                <i class="fas fa-heart text-red-500 text-5xl mb-6"></i>
+                <h3 class="text-xl font-semibold mb-3">Our Values</h3>
+                <p class="text-gray-600">Integrity, simplicity, and innovation guide every decision we make.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Team Section -->
+<div class="py-20 bg-white px-6">
+    <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-3xl font-extrabold text-gray-900 mb-14">Meet Our Team</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+            <!-- Team Member -->
+            <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 shadow-md">
+                <h3 class="text-lg font-semibold text-gray-800">John Doe</h3>
+                <p class="text-indigo-600 font-medium mb-2">Founder & CEO</p>
+                <p class="text-gray-600 text-sm">Passionate about building scalable and secure web applications.</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+                <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 shadow-md">
+                <h3 class="text-lg font-semibold text-gray-800">Jane Smith</h3>
+                <p class="text-indigo-600 font-medium mb-2">Lead Developer</p>
+                <p class="text-gray-600 text-sm">Expert in Django and cloud-based web solutions.</p>
+            </div>
+            <div class="bg-gray-50 p-6 rounded-xl shadow hover:shadow-lg transition">
+                <img src="https://randomuser.me/api/portraits/men/58.jpg" alt="Team Member" class="w-24 h-24 rounded-full mx-auto mb-4 shadow-md">
+                <h3 class="text-lg font-semibold text-gray-800">Michael Lee</h3>
+                <p class="text-indigo-600 font-medium mb-2">UI/UX Designer</p>
+                <p class="text-gray-600 text-sm">Designs intuitive and elegant user experiences.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="bg-gradient-to-r from-indigo-600 to-blue-600 py-16 px-6 text-center text-white">
+    <h2 class="text-3xl font-bold mb-4">Ready to Work With Us?</h2>
+    <p class="mb-6 text-lg text-gray-200">Join hands with BasicApp and let’s create something amazing together.</p>
+    <a href="{% url 'contact' %}" class="px-8 py-3 bg-white text-indigo-600 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
+        Contact Us
+    </a>
+</div>
+{% endblock content %}

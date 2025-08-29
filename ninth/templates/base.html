@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}BasicApp{% endblock title %}</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous"/>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+  <!-- Navbar -->
+  <nav class="sticky top-0 z-50 bg-gray-900 text-white shadow">
+    <div class="container mx-auto flex items-center justify-between py-3 px-6">
+      <!-- Logo -->
+      <a href="/" class="text-2xl font-bold tracking-wide flex items-center gap-2">
+        <i class="fa-solid fa-cubes text-blue-400"></i> BasicApp
+      </a>
+
+      <!-- Menu -->
+      <ul class="hidden md:flex space-x-6">
+        <li><a href="{% url 'homepage' %}" class="hover:text-blue-400">Home</a></li>
+        <li><a href="{% url 'product' %}" class="hover:text-blue-400">Products</a></li>
+        <li><a href="{% url 'about' %}" class="hover:text-blue-400">About</a></li>
+        <li><a href="{% url 'contact' %}" class="hover:text-blue-400">Contact</a></li>
+      </ul>
+
+      <!-- Right Side -->
+      <div class="flex items-center space-x-4">
+        {% if user.is_authenticated %}
+          <!-- Dropdown -->
+          <div class="relative group">
+            <button class="flex items-center gap-2 hover:text-blue-400">
+              <i class="fa-solid fa-user-circle text-xl"></i>
+              {{ user.username }}
+              <i class="fa-solid fa-chevron-down text-sm"></i>
+            </button>
+            <ul class="absolute right-0 mt-2 w-40 bg-white text-gray-700 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition">
+              <li><a href="{% url 'accounts:profile' username=user.username %}" class="block px-4 py-2 hover:bg-gray-100">Profile</a></li>
+              <li><a href="{% url 'post:post_list' %}" class="block px-4 py-2 hover:bg-gray-100">Post List</a></li>
+              <li><a href="{% url 'post:create_post' %}" class="block px-4 py-2 hover:bg-gray-100">Create Post</a></li>
+              <li>
+                <form action="{% url 'accounts:logout' %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        {% else %}
+          <a href="{% url 'accounts:login' %}" class="hover:text-blue-400">Login</a>
+          <a href="{% url 'accounts:signup' %}" class="px-3 py-1 bg-blue-500 rounded-md hover:bg-blue-600">Signup</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-grow container mx-auto px-6 py-10">
+    {% block content %}
+    <!-- Example placeholder content -->
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="bg-white rounded-xl shadow p-6">
+        <i class="fa-solid fa-box text-3xl text-blue-500 mb-3"></i>
+        <h2 class="text-xl font-semibold mb-2">Feature One</h2>
+        <p class="text-gray-600">Explain what makes your app amazing here.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <i class="fa-solid fa-chart-line text-3xl text-green-500 mb-3"></i>
+        <h2 class="text-xl font-semibold mb-2">Feature Two</h2>
+        <p class="text-gray-600">Add another highlight about your project.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <i class="fa-solid fa-lock text-3xl text-purple-500 mb-3"></i>
+        <h2 class="text-xl font-semibold mb-2">Feature Three</h2>
+        <p class="text-gray-600">Emphasize security, speed, or anything else.</p>
+      </div>
+    </div>
+    {% endblock content %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-300 mt-10">
+    <div class="container mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
+      <!-- About -->
+      <div>
+        <h3 class="text-white text-lg font-semibold mb-3">BasicApp</h3>
+        <p class="text-gray-400">A professional Django project with a modern UI built using TailwindCSS.</p>
+      </div>
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-white text-lg font-semibold mb-3">Quick Links</h3>
+        <ul class="space-y-2">
+          <li><a href="{% url 'homepage' %}" class="hover:text-blue-400">Home</a></li>
+          <li><a href="{% url 'about' %}" class="hover:text-blue-400">About</a></li>
+          <li><a href="{% url 'contact' %}" class="hover:text-blue-400">Contact</a></li>
+          <li><a href="{% url 'product' %}" class="hover:text-blue-400">Products</a></li>
+        </ul>
+      </div>
+      <!-- Social -->
+      <div>
+        <h3 class="text-white text-lg font-semibold mb-3">Follow Us</h3>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-blue-400"><i class="fab fa-facebook text-xl"></i></a>
+          <a href="#" class="hover:text-blue-400"><i class="fab fa-twitter text-xl"></i></a>
+          <a href="#" class="hover:text-blue-400"><i class="fab fa-linkedin text-xl"></i></a>
+          <a href="#" class="hover:text-blue-400"><i class="fab fa-github text-xl"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="bg-gray-800 text-center py-4 text-sm text-gray-500">
+      &copy; 2025 BasicApp. All rights reserved.
+    </div>
+  </footer>
+</body>
+</html>

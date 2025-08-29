@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock title %}
+
+{% block content %}
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 to-blue-100 px-6">
+    <div class="bg-white shadow-xl rounded-2xl w-full max-w-md p-8">
+        <!-- Heading -->
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-extrabold text-gray-900">Welcome Back</h2>
+            <p class="mt-2 text-gray-600">Login to continue to <span class="font-semibold text-indigo-600">BasicApp</span></p>
+        </div>
+
+        <!-- Form -->
+        <form method="post" class="space-y-5">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <!-- Submit -->
+            <button type="submit" class="w-full py-3 px-6 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-lg shadow-md transition">
+                Login
+            </button>
+        </form>
+
+        <!-- Footer Links -->
+        <p class="mt-6 text-center text-sm text-gray-600">
+            Don’t have an account? 
+            <a href="{% url 'accounts:signup' %}" class="text-indigo-600 font-semibold hover:underline">Sign up</a>
+        </p>
+    </div>
+</div>
+
+<style>
+    /* Make default form inputs look nicer */
+    input[type="text"], input[type="password"] {
+        width: 100%;
+        padding: 10px 14px;
+        border: 1px solid #d1d5db; /* gray-300 */
+        border-radius: 0.5rem; /* rounded-lg */
+        outline: none;
+        transition: all 0.2s;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+        border-color: #6366f1; /* indigo-500 */
+        box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.3);
+    }
+</style>
+{% endblock content %}

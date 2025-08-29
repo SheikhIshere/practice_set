@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Post Details{% endblock title %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-gray-50 to-indigo-100 flex items-center justify-center p-6">
+    <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+        
+        <!-- Title -->
+        <h1 class="text-3xl font-extrabold text-gray-800 mb-4">{{ post.title }}</h1>
+        
+        <!-- Meta info -->
+        <div class="flex justify-between items-center text-sm text-gray-500 mb-6">
+            <p>By <span class="font-medium text-gray-700">{{ post.user }}</span></p>
+            <p>{{ post.created_at|date:"M d, Y H:i" }}</p>
+        </div>
+
+        <!-- Description -->
+        <p class="text-gray-700 leading-relaxed mb-8">{{ post.discription }}</p>
+        
+        <hr class="my-6">
+
+        <!-- Actions -->
+        <div class="flex justify-between">
+            {% if post.user == request.user %}
+                <div class="space-x-3">
+                    <a href="{% url 'post:post_update' pk=post.pk %}"
+                       class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition">
+                        ✏️ Edit
+                    </a>
+                    <a href="{% url 'post:post_delete' pk=post.pk %}"
+                       class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-lg shadow transition">
+                        🗑 Delete
+                    </a>
+                </div>
+            {% endif %}
+
+            <a href="{% url 'post:post_list' %}"
+               class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg shadow transition">
+                ⬅ Back to Posts
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}
