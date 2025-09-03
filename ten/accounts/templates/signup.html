@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <form method="post" class="bg-white text-gray-500 max-w-[340px] w-full mx-4 md:p-6 p-4 py-8 text-left text-sm rounded-xl shadow-[0px_0px_10px_0px] shadow-black/10">
+        {% csrf_token %}
+        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">Create Account</h2>
+        
+        <!-- Username -->
+        <div class="my-2">
+            <input type="text" name="username" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none" placeholder="Username" required>
+            {% if form.username.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.username.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Email -->
+        <div class="my-2">
+            <input type="email" name="email" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none" placeholder="Email" required>
+            {% if form.email.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.email.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Password -->
+        <div class="my-2">
+            <input type="password" name="password1" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none" placeholder="Password" required>
+            {% if form.password1.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.password1.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="my-2">
+            <input type="password" name="password2" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none" placeholder="Confirm Password" required>
+            {% if form.password2.errors %}
+                <p class="text-red-500 text-xs mt-1">{{ form.password2.errors.0 }}</p>
+            {% endif %}
+        </div>
+
+        <!-- First Name -->
+        <div class="my-2">
+            <input type="text" name="first_name" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none" placeholder="First Name">
+        </div>
+
+        <!-- Last Name -->
+        <div class="my-2">
+            <input type="text" name="last_name" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none" placeholder="Last Name">
+        </div>
+
+        <!-- Phone -->
+        <div class="my-2">
+            <input type="tel" name="phone" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none" placeholder="Phone Number">
+        </div>
+
+        <!-- Address -->
+        <div class="my-2">
+            <input type="text" name="address" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none" placeholder="Address">
+        </div>
+
+        <!-- Gender -->
+        <div class="my-2 mb-4">
+            <select name="gender" class="w-full border bg-indigo-500/5 border-gray-500/10 rounded py-2.5 px-3 outline-none text-gray-700">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+            </select>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="w-full mb-3 bg-indigo-500 hover:bg-indigo-600/90 transition py-2.5 rounded text-white font-medium">Sign Up</button>
+        
+        <p class="text-center mt-4">
+            Already have an account? <a href="{% url 'accounts:login' %}" class="text-blue-500 underline">Log In</a>
+        </p>
+    </form>
+</body>
+</html>

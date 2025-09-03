@@ -1,0 +1,33 @@
+{% extends "_base.html" %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+  <div class="flex items-center space-x-4">
+    <div class="w-28 h-28 rounded-full bg-gray-200 overflow-hidden">
+      {% if profile.profile_image %}
+        <img src="{{ profile.profile_image.url }}" alt="Profile image" class="object-cover w-full h-full">
+      {% else %}
+        <div class="text-center py-8 text-gray-500"><i class="fas fa-user fa-2x"></i></div>
+      {% endif %}
+    </div>
+
+    <div>
+      <h2 class="text-2xl font-semibold">{{ profile.name|default:profile.user.username }}</h2>
+      <p class="text-sm text-gray-600">Email: {{ profile.user.email }}</p>
+      <p class="mt-1">
+        {% if profile.email_verified %}
+          <span class="text-green-700"><i class="fas fa-check-circle"></i> Email verified</span>
+        {% else %}
+          <span class="text-yellow-600"><i class="fas fa-exclamation-circle"></i> Email not verified</span>
+        {% endif %}
+      </p>
+      <p class="mt-4 text-gray-700">{{ profile.bio|linebreaksbr }}</p>
+      <div class="mt-4">
+        <a href="{% url 'accounts:edit_profile' %}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded"><i class="fas fa-edit mr-2"></i>Edit profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

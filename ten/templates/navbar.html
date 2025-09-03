@@ -1,0 +1,78 @@
+<!-- Premium Stylish Navbar -->
+<nav class="bg-gradient-to-r from-indigo-600 to-purple-600 shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center space-x-3">
+        <div class="w-10 h-10 flex items-center justify-center rounded-full bg-white text-indigo-600 font-bold text-lg shadow-lg transform hover:scale-110 transition">
+          O
+        </div>
+        <span class="text-white text-2xl font-extrabold hover:text-gray-200 transition">OTP Auth</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <div class="hidden md:flex items-center space-x-4">
+        {% if user.is_authenticated %}
+          <a href="{% url 'accounts:profile' username=user.username %}" 
+             class="px-4 py-2 rounded-lg bg-white text-indigo-600 font-semibold hover:bg-indigo-100 hover:scale-105 transition transform">
+             Profile
+          </a>
+          <form method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+            <button type="submit" 
+              class="px-4 py-2 rounded-lg bg-red-500 text-white font-semibold hover:bg-red-600 hover:scale-105 transition transform">
+              Logout
+            </button>
+          </form>
+        {% else %}
+          <a href="{% url 'accounts:signup' %}" 
+             class="px-4 py-2 rounded-lg bg-white text-indigo-600 font-semibold hover:bg-indigo-100 hover:scale-105 transition transform">
+             Signup
+          </a>
+          <a href="{% url 'accounts:login' %}" 
+             class="px-4 py-2 rounded-lg bg-indigo-500 text-white font-semibold hover:bg-indigo-600 hover:scale-105 transition transform">
+             Login
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-white focus:outline-none">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="menu" class="hidden md:hidden px-6 pb-4 bg-gradient-to-r from-indigo-600 to-purple-600">
+    <ul class="space-y-3 text-white font-medium">
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'accounts:profile' username=user.username %}" class="block hover:text-gray-200 transition">Profile</a></li>
+        <li>
+          <form method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="w-full text-left hover:text-gray-200 transition">Logout</button>
+          </form>
+        </li>
+      {% else %}
+        <li><a href="{% url 'accounts:signup' %}" class="block hover:text-gray-200 transition">Signup</a></li>
+        <li><a href="{% url 'accounts:login' %}" class="block hover:text-gray-200 transition">Login</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('menu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>

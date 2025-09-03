@@ -1,0 +1,49 @@
+{% extends "_base.html" %}
+{% block title %}Verify Email{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+
+<div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+  <h1 class="text-2xl font-semibold mb-2">Verify your email</h1>
+  <p class="mb-4">We sent a 6-digit code to your email. Enter it below.</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      {{ form.code.label_tag }}
+      {{ form.code|add_class:"w-full p-3 text-center text-xl font-mono border rounded" }}
+      {% for error in form.code.errors %}<p class="text-red-600 text-sm">{{ error }}</p>{% endfor %}
+    </div>
+
+    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 rounded">
+      <i class="fas fa-check-circle mr-2"></i> Verify Email
+    </button>
+  </form>
+
+  <div class="mt-4 text-center">
+    <a id="resend-link" href="{% url 'accounts:resend_otp' %}" data-seconds-left="{{ seconds_left }}" class="text-blue-600 underline">Resend code</a>
+  </div>
+</div>
+
+<script>
+  // Resend cooldown countdown
+  const resend = document.getElementById('resend-link');
+  if (resend) {
+    let seconds = parseInt(resend.dataset.secondsLeft || '0');
+    if (seconds > 0) {
+      resend.classList.add('text-gray-400', 'pointer-events-none');
+      resend.textContent = `Resend code in ${seconds}s`;
+      const interval = setInterval(() => {
+        seconds--;
+        if (seconds > 0) {
+          resend.textContent = `Resend code in ${seconds}s`;
+        } else {
+          clearInterval(interval);
+          resend.textContent = 'Resend code';
+          resend.classList.remove('text-gray-400', 'pointer-events-none');
+        }
+      }, 1000);
+    }
+  }
+</script>
+{% endblock %}

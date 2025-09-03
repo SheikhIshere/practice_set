@@ -1,0 +1,32 @@
+{% extends "_base.html" %}
+{% block title %}Edit Profile{% endblock %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+<div class="max-w-md mx-auto bg-white p-6 rounded shadow">
+  <h1 class="text-2xl font-semibold mb-4">Edit profile</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      {{ form.name.label_tag }}
+      {{ form.name|add_class:"w-full p-2 border rounded" }}
+      {% for e in form.name.errors %}<p class="text-red-600 text-sm">{{ e }}</p>{% endfor %}
+    </div>
+
+    <div class="mb-3">
+      {{ form.bio.label_tag }}
+      {{ form.bio|add_class:"w-full p-2 border rounded" }}
+      {% for e in form.bio.errors %}<p class="text-red-600 text-sm">{{ e }}</p>{% endfor %}
+    </div>
+
+    <div class="mb-3">
+      {{ form.profile_image.label_tag }}
+      {{ form.profile_image }}
+      {% for e in form.profile_image.errors %}<p class="text-red-600 text-sm">{{ e }}</p>{% endfor %}
+    </div>
+
+    <button type="submit" class="bg-green-600 text-white px-4 py-2 rounded"><i class="fas fa-save mr-2"></i>Save</button>
+  </form>
+</div>
+{% endblock %}

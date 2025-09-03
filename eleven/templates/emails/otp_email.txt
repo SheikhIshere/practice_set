@@ -1,0 +1,7 @@
+Hello {{ user.username }},
+
+Your verification code for "{{ purpose }}" is:
+
+{{ otp }}
+
+This code expires in 5 minutes. If you didn't request this, ignore this email.

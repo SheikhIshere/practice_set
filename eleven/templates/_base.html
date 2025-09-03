@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}MyProject{% endblock %}</title>
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome CDN -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body class="bg-gray-100 min-h-screen">
+    <nav class="bg-white shadow">
+      <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="/" class="text-lg font-bold">MyProject</a>
+        <div>
+          {% if user.is_authenticated %}
+            <a href="{% url 'accounts:profile' %}" class="mr-4"><i class="fas fa-user"></i> {{ user.username }}</a>
+            <a href="{% url 'accounts:logout' %}" class="text-sm text-red-600 hover:underline"><i class="fas fa-sign-out-alt"></i> Logout</a>
+          {% else %}
+            <a href="{% url 'accounts:login' %}" class="mr-4">Login</a>
+            <a href="{% url 'accounts:signup' %}">Sign up</a>
+          {% endif %}
+        </div>
+      </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8">
+      {% if messages %}
+        <div class="mb-6">
+          {% for message in messages %}
+            <div class="p-3 rounded mb-2
+                        {% if 'error' in message.tags %}bg-red-100 border border-red-300 text-red-800{% endif %}
+                        {% if 'success' in message.tags %}bg-green-100 border border-green-300 text-green-800{% endif %}
+                        {% if 'info' in message.tags %}bg-blue-100 border border-blue-300 text-blue-800{% endif %}">
+              <i class="fas fa-info-circle mr-2"></i> {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
